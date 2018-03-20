@@ -6,6 +6,11 @@ public class Inquiry {
     private String connectionUrl = "jdbc:sqlserver://gsz-sql01\\MSSQLSERVER:1433;trustServerCertificate=true;integratedSecurity=true;databaseName=AvayaLogger";
     private String answer0 = "SELECT top 10 CallStart, CallDuration, Caller, CalledNumber, Party1Device, Party1Name, " +
             "Party2Device, Party2Name, ServerIPCaller, ServerIPCalled FROM dbo.Calls_History ORDER BY calls_ID DESC;";
+
+    public ArrayList<String> getList() {
+        return list;
+    }
+
     private  ArrayList<String> list = new ArrayList<String>();
 
     public Statement connect() throws SQLException {
