@@ -1,7 +1,10 @@
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+
+/*
+* */
+
 
 public class InquiryOutput {
     private OutputStream out;
@@ -13,8 +16,14 @@ public class InquiryOutput {
     }
 
     public void writeData() {
+        System.out.println("Запись в файл");
         for (String i : list) {
-
+            try {
+                out.write(i.getBytes());
+                out.write("\n".getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

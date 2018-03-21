@@ -8,16 +8,18 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Inquiry inquiry = new Inquiry();
-        ArrayList<String> list = inquiry.getList();
+        Inquiry inquiryOut = new Inquiry();
+        InquiryInput inquiryIn = new InquiryInput();
+        ArrayList<String> list = inquiryOut.getList();
+        String file = inquiryIn.getFile();
 
-        try (Statement statement = inquiry.connect()) {
-            inquiry.inq0(statement);
+        try (Statement statement = inquiryOut.connect()) {
+            inquiryOut.inq0(statement);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        try (OutputStream fos = new FileOutputStream("AvayaLogger")) {
+        try (OutputStream fos = new FileOutputStream(file)) {
             InquiryOutput output = new InquiryOutput(fos, list);
             output.writeData();
         } catch (FileNotFoundException e) {
@@ -25,12 +27,6 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        list = inquiry.getList();
-//
-//        for (String i : list) {
-//            System.out.println(i);
-//            System.out.println();
-//        }
+        System.out.println("Готово!");
     }
 }
