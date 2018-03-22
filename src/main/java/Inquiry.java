@@ -16,10 +16,12 @@ public class Inquiry {
     public Statement connect() throws SQLException {
         Connection connection = DriverManager.getConnection(connectionUrl);
 
-            if (!connection.isClosed()) {
-                System.out.println("Соединение с БД установлено");
-                System.out.println();
-            }
+        if (!connection.isClosed()) {
+            System.out.println("Соединение с БД установлено");
+            System.out.println();
+        } else {
+            System.out.println("Соединение с БД НЕ УСТАНОВЛЕНО");
+        }
 
             Statement statement = connection.createStatement();
 

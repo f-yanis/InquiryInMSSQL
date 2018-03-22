@@ -1,4 +1,6 @@
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.Properties;
 
 /*
  * Берет из внешней среды:
@@ -9,10 +11,22 @@ import java.io.InputStream;
 
 
 public class InquiryInput {
-    InputStream in;
-    private String file = "C:\\Users\\y.fayzullin\\Desktop\\AvayaLogger.txt";
+    private InputStream in;
+    private Properties properties;
+    private static String filePath;
+    private int b;
 
-    public String getFile() {
-        return file;
+    public InquiryInput(InputStream in) {
+        this.in = in;
+        this.properties = new Properties();
+    }
+
+    public void readConfig() throws IOException {
+        properties.load(in);
+        filePath = properties.getProperty("path");
+    }
+
+    public static String getFilePath() {
+        return filePath;
     }
 }
